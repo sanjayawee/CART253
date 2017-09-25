@@ -1,11 +1,11 @@
 //Identify the variables and assign the values
 
-final int CIRCLE_SPEED = 7;//its
+final int CIRCLE_SPEED = 7; //speed of the circle movment
 color NO_CLICK_FILL_COLOR = color(250, 100, 100);//CHANGED remove the "final" circle default color
 final color CLICK_FILL_COLOR = color(100, 100, 250);//Circle color when mouse point hit the circle (values are not to be changed)
 final color BACKGROUND_COLOR = color(250, 150, 150);//color of the canvus background (values are not to be changed)
 final color STROKE_COLOR = color(250, 150, 150);//color of the circle stroke (values are not to be changed)
-final int CIRCLE_SIZE = 50;//size of the circle (values are not to be changed)
+int CIRCLE_SIZE = 50;//CHANGED remove the "final" || size of the circle
 
 //CHANGED
 float color1 =(255);// Identify a variable to change R color
@@ -35,11 +35,8 @@ void setup() {
   // Default Circle Color 
   fill(NO_CLICK_FILL_COLOR);
   // Background color
-  background(BACKGROUND_COLOR);
-  
-    
+  background(BACKGROUND_COLOR); 
 }
-
 
 //draw
 //
@@ -48,11 +45,16 @@ void draw() {
     if (dist(mouseX, mouseY, circleX, circleY) < CIRCLE_SIZE/2) {
   //fill the circle in blue color    
     fill(CLICK_FILL_COLOR);
-  //CHANGED randomly change color when the mouse point on the circle
+  //CHANGED 
+  //randomly change color when the mouse point on the circle
     color1=random(255);
     color2=random(255);
     color3=random(255);
     fill(color1,color2,color3);
+    
+    if(CIRCLE_SIZE <= 100){
+        CIRCLE_SIZE++;
+    }
     
   }
  
@@ -68,8 +70,6 @@ void draw() {
   circleY += circleVY;
   //
   //
-  //
-  //
   if (circleX + CIRCLE_SIZE/2 > width || circleX - CIRCLE_SIZE/2 < 0) {
   // reduce the value of circleVX || circle move to opposite direction of X
     circleVX = -circleVX;
@@ -77,6 +77,7 @@ void draw() {
   //change the color when hit the both vertical border
     NO_CLICK_FILL_COLOR+=5;
   }
+  //
   //
   if (circleY + CIRCLE_SIZE/2 > height || circleY - CIRCLE_SIZE/2 < 0) {
   // reduce the value of circleVY || circle move to opposite direction of Y
@@ -101,6 +102,9 @@ void mousePressed() {
     color3=random(255);
    background(color1,color2,color3);
    }
-  
+  //CHANGED
+  //reset the circle to default size
+  CIRCLE_SIZE = 50; 
+
   
 }
