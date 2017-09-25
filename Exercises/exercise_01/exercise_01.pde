@@ -1,7 +1,7 @@
 //its values are not to be changed.
 
 final int CIRCLE_SPEED = 5;
-final color NO_CLICK_FILL_COLOR = color(250, 100, 100);//
+ color NO_CLICK_FILL_COLOR = color(250, 100, 100);//
 final color CLICK_FILL_COLOR = color(100, 100, 250);//
 final color BACKGROUND_COLOR = color(250, 150, 150);//
 final color STROKE_COLOR = color(250, 150, 150);//
@@ -73,13 +73,13 @@ void draw() {
   if (circleX + CIRCLE_SIZE/2 > width || circleX - CIRCLE_SIZE/2 < 0) {
   // reduce the value of circleVX || circle move to opposite direction of X
     circleVX = -circleVX;
-    
-  
+    NO_CLICK_FILL_COLOR+=5;
   }
   //
   if (circleY + CIRCLE_SIZE/2 > height || circleY - CIRCLE_SIZE/2 < 0) {
   // reduce the value of circleVY || circle move to opposite direction of Y
     circleVY = -circleVY;
+    NO_CLICK_FILL_COLOR+=5;
   }
 }
 
