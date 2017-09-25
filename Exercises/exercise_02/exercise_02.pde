@@ -1,25 +1,29 @@
-color backgroundColor = color(0);
+color backgroundColor = color(0); //color of the background (black)
 
-int numStatic = 1000;
-int staticSizeMin = 1;
-int staticSizeMax = 3;
-color staticColor = color(200);
+int numStatic = 1000; //number of statics that loops
+int staticSizeMin = 1; //
+int staticSizeMax = 3; //
+color staticColor = color(195,215,235);// color of the statics
 
-int paddleX;
-int paddleY;
-int paddleVX;
-int paddleSpeed = 10;
-int paddleWidth = 128;
-int paddleHeight = 16;
-color paddleColor = color(255);
+int paddleX;// paddle location x veriable
+int paddleY;// paddle location y veriable
+int paddleVX; // paddle velocity
+int paddleSpeed = 10; //speed of the paddel movement
+int paddleWidth = 128; // paddle width
+int paddleHeight = 16; // paddle height
+color paddleColor = color(255); // paddel color
 
-int ballX;
-int ballY;
-int ballVX;
-int ballVY;
+int ballX; //ball location x
+int ballY; //ball location y
+int ballVX;// ball velocity x
+int ballVY;// ball velocity y
 int ballSpeed = 5;
 int ballSize = 16;
-color ballColor = color(255);
+color ballColor = color(255,152,246);
+
+
+
+
 
 void setup() {
   size(640, 480);
@@ -29,15 +33,17 @@ void setup() {
 }
 
 void setupPaddle() {
-  paddleX = width/2;
-  paddleY = height - paddleHeight;
+  paddleX = width/2; // paddle X location 320
+  paddleY = height - paddleHeight; //padle Y location 480-16=464
   paddleVX = 0;
+  
+  
 }
 
 void setupBall() {
-  ballX = width/2;
-  ballY = height/2;
-  ballVX = ballSpeed;
+  ballX = width/2; // ball x locaiton 320
+  ballY = height/2; // ball y location 240
+  ballVX = ballSpeed; 
   ballVY = ballSpeed;
 }
 
@@ -60,6 +66,7 @@ void drawStatic() {
    float staticSize = random(staticSizeMin,staticSizeMax);
    fill(staticColor);
    rect(x,y,staticSize,staticSize);
+   //ellipse(x,y,staticSize,staticSize);
   }
 }
 
@@ -82,24 +89,35 @@ void drawPaddle() {
   noStroke();
   fill(paddleColor);
   rect(paddleX, paddleY, paddleWidth, paddleHeight);
+  println(paddleX,paddleY);
+ 
 }
+
+
 
 void drawBall() {
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
-  rect(ballX, ballY, ballSize, ballSize);
+  //rect(ballX, ballY, ballSize, ballSize);
+  ellipse(ballX, ballY, ballSize, ballSize);
 }
 
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+     float r=round (random(255));
+     float g=round (random(255));
+     float b=round (random(255));
+    ballColor = color(r,g,b);
+    
   }
 }
 
 boolean ballOverlapsPaddle() {
-  if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
+  if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2)
+  {
     if (ballY > paddleY - paddleHeight/2) {
       return true;
     }
