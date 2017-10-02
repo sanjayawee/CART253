@@ -1,3 +1,9 @@
+import processing.sound.*; //CHANGED
+
+    SoundFile file;
+    String audioName = "se.wav"; //audio file 
+    String path;
+
 color backgroundColor = color(0); //color of the background (black)
 
 int numStatic = 1000; //number of statics that loops
@@ -19,19 +25,24 @@ int ballVX;// ball velocity x
 int ballVY;// ball velocity y
 int ballSpeed = 5;
 int ballSize = 16;
-color ballColor = color(255,152,246);
+color ballColor = color(255,152,246);// color of the ball
+
+int count=0; //CHANGED
 
 
 
 
-
+//srtup the canvus,ball and paddle
 void setup() {
-  size(640, 480);
+  size(640, 480);//canvus size
+  setupPaddle();//paddel setup
+  setupBall();//ball setup
   
-  setupPaddle();
-  setupBall();
+  path = sketchPath(audioName);
+  file = new SoundFile(this, path);
 }
 
+//setup paddle
 void setupPaddle() {
   paddleX = width/2; // paddle X location 320
   paddleY = height - paddleHeight; //padle Y location 480-16=464
@@ -40,6 +51,7 @@ void setupPaddle() {
   
 }
 
+//setup ball
 void setupBall() {
   ballX = width/2; // ball x locaiton 320
   ballY = height/2; // ball y location 240
@@ -47,26 +59,34 @@ void setupBall() {
   ballVY = ballSpeed;
 }
 
+//draw
+//
 void draw() {
-  background(backgroundColor);
+  background(backgroundColor); //background color
 
-  drawStatic();
+  drawStatic();// draw statics
 
-  updatePaddle();
-  updateBall();
+  updatePaddle(); //draw ball accourding to the updates
+  updateBall(); //draw ball accourding to the updates
 
-  drawPaddle();
-  drawBall();
+  drawPaddle();//draw paddle
+  drawBall();//draw ball
 }
 
+//draw static setup
+//
+//backgorund color must before the drawstatic bcz it will not fliker
 void drawStatic() {
-  for (int i = 0; i < numStatic; i++) {
+  for (int i = 0; i < numStatic; i++) //
+  {
    float x = random(0,width);
    float y = random(0,height);
    float staticSize = random(staticSizeMin,staticSizeMax);
+   
    fill(staticColor);
    rect(x,y,staticSize,staticSize);
    //ellipse(x,y,staticSize,staticSize);
+   
   }
 }
 
@@ -75,6 +95,8 @@ void updatePaddle() {
   paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);
 }
 
+
+//
 void updateBall() {
   ballX += ballVX;
   ballY += ballVY;
@@ -84,6 +106,8 @@ void updateBall() {
   handleBallOffBottom();
 }
 
+//draw paddle
+//
 void drawPaddle() {
   rectMode(CENTER);
   noStroke();
@@ -93,8 +117,8 @@ void drawPaddle() {
  
 }
 
-
-
+//draw ball
+//
 void drawBall() {
   rectMode(CENTER);
   noStroke();
@@ -111,6 +135,9 @@ void handleBallHitPaddle() {
      float g=round (random(255));
      float b=round (random(255));
     ballColor = color(r,g,b);
+    
+    file.play();//play the sound
+    
     
   }
 }
