@@ -1,14 +1,15 @@
-import processing.sound.*; //CHANGED
+//CHANGED
+import processing.sound.*; //import sound library
 
     SoundFile file;
     String audioName = "se.wav"; //audio file 
-    String path;
+    String path; //
 
 color backgroundColor = color(0); //color of the background (black)
 
 int numStatic = 1000; //number of statics that loops
-int staticSizeMin = 1; //
-int staticSizeMax = 3; //
+int staticSizeMin = 1; //statics min size
+int staticSizeMax = 3; //statics max size
 color staticColor = color(195,215,235);// color of the statics
 
 int paddleX;// paddle location x veriable
@@ -23,8 +24,8 @@ int ballX; //ball location x
 int ballY; //ball location y
 int ballVX;// ball velocity x
 int ballVY;// ball velocity y
-int ballSpeed = 5;
-int ballSize = 16;
+int ballSpeed = 5; //ball speed
+int ballSize = 16; //ball size
 color ballColor = color(255,152,246);// color of the ball
 
 int count=0; //CHANGED
@@ -32,7 +33,7 @@ int count=0; //CHANGED
 
 
 
-//srtup the canvus,ball and paddle
+//setup the canvus,ball and paddle
 void setup() {
   size(640, 480);//canvus size
   setupPaddle();//paddel setup
@@ -79,9 +80,9 @@ void draw() {
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) //
   {
-   float x = random(0,width);
-   float y = random(0,height);
-   float staticSize = random(staticSizeMin,staticSizeMax);
+   float x = random(0,width);//randomly choose the loaction
+   float y = random(0,height);//
+   float staticSize = random(staticSizeMin,staticSizeMax);//random static size
    
    fill(staticColor);
    //rect(x,y,staticSize,staticSize);
@@ -93,7 +94,7 @@ void drawStatic() {
 //
 void updatePaddle() {
   paddleX += paddleVX;  
-  paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);//
+  paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);// paddle maximum lacations
 }
 
 
@@ -139,7 +140,7 @@ void drawScore(){
 }
 
 
-//If ball overlaps paddle.change the ballVY value by minus
+//If balloverlapspaddle function true.change the ballVY and ballY vlaues.
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
@@ -157,7 +158,7 @@ void handleBallHitPaddle() {
 }
 
 //
-//
+//checking,does ball overlaps the paddele.if yes return ture otherwise return false.
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2)
   {
