@@ -71,11 +71,11 @@ void draw() {
 
   drawPaddle();//draw paddle
   drawBall();//draw ball
+  drawScore();//CHANGED
 }
 
-//draw static setup
+//draw static
 //
-//backgorund color must before the drawstatic bcz it will not fliker
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) //
   {
@@ -84,18 +84,20 @@ void drawStatic() {
    float staticSize = random(staticSizeMin,staticSizeMax);
    
    fill(staticColor);
-   rect(x,y,staticSize,staticSize);
-   //ellipse(x,y,staticSize,staticSize);
+   //rect(x,y,staticSize,staticSize);
+   ellipse(x,y,staticSize,staticSize); //CHANGED
    
   }
 }
-
+//
+//
 void updatePaddle() {
   paddleX += paddleVX;  
-  paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);
+  paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);//
 }
 
 
+//
 //
 void updateBall() {
   ballX += ballVX;
@@ -113,7 +115,7 @@ void drawPaddle() {
   noStroke();
   fill(paddleColor);
   rect(paddleX, paddleY, paddleWidth, paddleHeight);
-  println(paddleX,paddleY);
+  
  
 }
 
@@ -124,24 +126,38 @@ void drawBall() {
   noStroke();
   fill(ballColor);
   //rect(ballX, ballY, ballSize, ballSize);
-  ellipse(ballX, ballY, ballSize, ballSize);
+  ellipse(ballX, ballY, ballSize, ballSize); //CHANGED
 }
 
+//
+//CHANGED
+void drawScore(){
+   textSize(32);
+   fill(255);
+   text("Score="+count, 50,50);
+  
+}
+
+
+//If ball overlaps paddle.change the ballVY value by minus
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    
+    //CHANGED
      float r=round (random(255));
      float g=round (random(255));
      float b=round (random(255));
-    ballColor = color(r,g,b);
+    ballColor = color(r,g,b); //change ball color randomly when ball hit the paddle
     
-    file.play();//play the sound
-    
-    
+    file.play();//play the sound when ball hit the paddle
+    count += 1;
   }
 }
 
+//
+//
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2)
   {
@@ -152,17 +168,21 @@ boolean ballOverlapsPaddle() {
   return false;
 }
 
+//
+//
 void handleBallOffBottom() {
   if (ballOffBottom()) {
     ballX = width/2;
     ballY = height/2;
   }
 }
-
+//
+//
 boolean ballOffBottom() {
   return (ballY - ballSize/2 > height);
 }
-
+//
+//
 void handleBallHitWall() {
   if (ballX - ballSize/2 < 0) {
     ballX = 0 + ballSize/2;
@@ -178,14 +198,22 @@ void handleBallHitWall() {
   }
 }
 
+
+//
+//If left arrow key pressed assign minus value of paddlespeed to paddleVX
+//If right arrow key pressed assign value of paddlespeed to paddleVX
 void keyPressed() {
   if (keyCode == LEFT) {
     paddleVX = -paddleSpeed;
+    
   } else if (keyCode == RIGHT) {
     paddleVX = paddleSpeed;
   }
 }
 
+
+//If left arrow key released and paddleVX is less than 0,assign value of 0 to passleVX
+//If right arrow key released and paddleVX is greater than 0,assign value of 0 to passleVX
 void keyReleased() {
   if (keyCode == LEFT && paddleVX < 0) {
     paddleVX = 0;
