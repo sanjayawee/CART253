@@ -51,7 +51,7 @@ class Bouncer {
       //CHANGED
       //
       size+=5;//change the size of the bouncer when hit the left and right walls
-      y=-y;
+     
     }
     //
     //If the ball hits the top or bottom walls   
@@ -84,6 +84,10 @@ class Bouncer {
   //
   void clicked() {
     y=-y; //change the y coordinate of bouncer when mouse click
+    vx+=5; //change the speed of the bouncer
+    vy+=5; //change the speed of the bouncer
+    //vx=constrain(vx,-2,20);
+    //vy=constrain(y,2,20);
   }
 
 
