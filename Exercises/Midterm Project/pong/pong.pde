@@ -38,6 +38,7 @@ String path2;
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
+Score score;
 
 //CHANGED
 //
@@ -70,8 +71,8 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'q', 'z');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '8', '2');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'q', 'z',color(0,0,150,50));
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '8', '2',color(150,0,0,50));
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -81,6 +82,8 @@ void setup() {
   environment=new Environment();
   //Create a new object into the variable music
   music=new Music();
+  //
+  score=new Score();
 
   //CHANGED
   //
@@ -123,12 +126,16 @@ void draw() {
   //
  environment.displayEnv();
  music.displyBar();
+ 
+ //score.gameOverPage ();
   
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
   rightPaddle.update();
   ball.update();
+  score.scores();
+  score. gameOver();
   
   
   

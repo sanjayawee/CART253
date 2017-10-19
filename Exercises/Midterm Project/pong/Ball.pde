@@ -108,6 +108,10 @@ class Ball {
         //
         //play the ball sound when ball hit the paddle
         file2.play();
+        //
+        //
+        paddle.score++;//count the score
+        
       } else if (vx > 0) {
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
@@ -115,6 +119,9 @@ class Ball {
         //
         //play the ball sound when ball hit the paddle
         file2.play();
+        //
+        //
+        paddle.score++;//count  the score
       }
       // And make it bounce
       vx = -vx;
