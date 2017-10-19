@@ -1,7 +1,7 @@
 class Score {
 
   
-  int winningScore = 3;
+  int winningScore = 1;
 
 
   color player1 = color (255, 0, 0);
@@ -43,6 +43,11 @@ class Score {
   
   void gameOverPage1 () {
 
+    
+  float j= random(320,360);
+  float f= random(240,282);
+  photo7.resize(90,90);
+  image(photo7,j,f);
   fill (0,0,150,50);
   stroke(255, 255, 255);
   strokeWeight(4);
@@ -55,6 +60,10 @@ class Score {
 
 void gameOverPage2 () {
 
+  float j= random(320,360);
+  float f= random(240,282);
+  photo7.resize(90,90);
+  image(photo7,j,f);
   fill (150,0,0,50);
   stroke(255, 255, 255);
   strokeWeight(4);

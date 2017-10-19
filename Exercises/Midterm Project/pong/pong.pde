@@ -48,7 +48,7 @@ Music music;// Global variables for the Music
 //
 //CHANGED
 //
-PImage photo1, photo2, photo3, photo4, photo_3, photo_4, photo5, photo6;
+PImage photo1, photo2, photo3, photo4, photo_3, photo_4, photo5, photo6,photo7;
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
@@ -96,6 +96,7 @@ void setup() {
   photo_4= loadImage("P2.png");
   photo5= loadImage("mount2.png");
   photo6= loadImage("sun.png");
+  photo7= loadImage("character.png");
 
 
 
