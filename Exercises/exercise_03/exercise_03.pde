@@ -35,12 +35,9 @@ void mouseClicked()
   bouncer2.clicked();
   //CHANGED
   //when the mouse clicked change the background color randomly
-   float r=round (random(180));
-   float g=round (random(255));
-   float b=round (random(115));
-     r=constrain(r,150,180);//
-     g=constrain(g,150,255);//
-     b=constrain(g,100,200);//
+   float r=round (random(0,180));
+   float g=round (random(100,255));
+   float b=round (random(100,115));
    color backgroundcolor1=color(r,g,b);
    background(backgroundcolor1);
    
