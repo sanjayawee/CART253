@@ -31,7 +31,7 @@ class Score {
    
    }
    }*/
-
+//check the both players score if one of this condition will ture call the gameOverPage functions
   void gameOver() {
     if (leftPaddle.score >= winningScore) {
       gameOverPage1();

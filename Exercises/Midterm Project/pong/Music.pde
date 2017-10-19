@@ -43,7 +43,7 @@ void mousehanddle() {
 }
 //CHANGED
 //
-//if mouse pointtouch this areas chnage the size of the rectangle,triangle and show texts
+//if mouse point touch this areas chnage the size of the rectangle,triangle and show texts
 void mousehandel2() {
   if (mouseX>55 && mouseX < 76 && mouseY > 455 && mouseY < 475) {
     text("PAUSE GAME or PRESS P", width/2, height/2);
