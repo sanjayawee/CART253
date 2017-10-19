@@ -8,7 +8,7 @@ class Ball {
 
   /////////////// Properties ///////////////
 
-  // Default values for speed and size
+  // Default values for speed and SIZE
   int SPEED = 5;
   int SIZE = 30;
 
@@ -155,5 +155,28 @@ class Ball {
     if (x < width/2-200) {
       image(photo2, x, y);
     }
+  
   }
+  
+  void collide(Bullet bullet){
+  
+    boolean insideLeft = (x + SIZE/2 > bullet.xx - bullet.w/2);
+    boolean insideRight = (x - SIZE/2 < bullet.xx + bullet.w/2);
+    boolean insideTop = (y + SIZE/2 > bullet.yy - bullet.h/2);
+    boolean insideBottom = (y - SIZE/2 < bullet.yy + bullet.h/2);
+  
+  if (insideLeft && insideRight && insideTop && insideBottom){
+  if(vx<0){
+  x=bullet.xx+bullet.w/2+SIZE/2;
+  }
+  else if(vx>0){
+  x=bullet.xx- bullet.w/2-SIZE/2;
+  }
+  vx=-vx;
+  }
+  
+  }
+  
+  
+  
 }

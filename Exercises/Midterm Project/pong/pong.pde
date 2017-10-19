@@ -38,24 +38,30 @@ String path2;
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
-Score score;
+Score score;//globle variable for the Score
 
 //CHANGED
 //
 Environment environment;// Global variables for the Envoronment
 Music music;// Global variables for the Music
 //
-//
 //CHANGED
 //
-PImage photo1, photo2, photo3, photo4, photo_3, photo_4, photo5, photo6,photo7;
+//Global variables for the Bullet
+Bullet bullet1;
+Bullet bullet2;
+Bullet bullet3;
+
+//CHANGED
+//
+PImage photo1, photo2, photo3, photo4, photo_3, photo_4, photo5, photo6, photo7;
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
 
 //CHANGED
 // The background colour during play (black)
-color backgroundColor = color(120,237,234);//change the background color
+color backgroundColor = color(120, 237, 234);//change the background color
 
 
 // setup()
@@ -71,8 +77,8 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'q', 'z',color(0,0,150,50));
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '8', '2',color(150,0,0,50));
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'q', 'z', color(0, 0, 150, 50));
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '8', '2', color(150, 0, 0, 50));
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -82,8 +88,14 @@ void setup() {
   environment=new Environment();
   //Create a new object into the variable music
   music=new Music();
-  //
+  //Create a new object into the variable score
   score=new Score();
+  //
+  //CHANGED
+  //Create a new object into the variable bullet1,2,3
+  bullet1 = new Bullet(520, height);
+  bullet2 = new Bullet(200, height);
+  bullet3 = new Bullet(320, height);
 
   //CHANGED
   //
@@ -112,7 +124,6 @@ void setup() {
   //player.amp(0.5);
   player.setGain(0);//Trying to reduse the background music volume 
   player.play();//play background music
-  
 }
 
 // draw()
@@ -125,21 +136,37 @@ void draw() {
   background(backgroundColor);
   //CHANGED
   //
- environment.displayEnv();
- music.displyBar();
- 
- //score.gameOverPage ();
+  environment.displayEnv();
+  music.displyBar();
+  //
+  //CHANGED
+  //
   
+  bullet1.update();
+  bullet2.update();
+  bullet3.update();
 
-  // Update the paddles and ball by calling their update methods
-  leftPaddle.update();
+
+  bullet1.displaybullet();
+  bullet2.displaybullet();
+  bullet3.displaybullet();
+
+  ball.collide(bullet1);
+  ball.collide(bullet2);
+  ball.collide(bullet3);
+
+
+
+    // Update the paddles and ball by calling their update methods
+    leftPaddle.update();
   rightPaddle.update();
   ball.update();
   score.scores();
   score. gameOver();
-  
-  
-  
+  score.resetScore();
+
+
+
 
   // Check if the ball has collided with either paddle
   ball.collide(leftPaddle);

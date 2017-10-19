@@ -1,7 +1,7 @@
 class Score {
 
-  
-  int winningScore = 1;
+
+  int winningScore = 20;
 
 
   color player1 = color (255, 0, 0);
@@ -10,6 +10,7 @@ class Score {
   void scores() {
 
     fill (255);
+    textSize(25);
     text ("Player 1: " + leftPaddle.score, 155, 40);
     text ("Player 2: " + rightPaddle.score, 480, 40);
   }
@@ -31,7 +32,7 @@ class Score {
    
    }
    }*/
-//check the both players score if one of this condition will ture call the gameOverPage functions
+  //check the both players score if one of this condition will ture call the gameOverPage functions
   void gameOver() {
     if (leftPaddle.score >= winningScore) {
       gameOverPage1();
@@ -40,37 +41,60 @@ class Score {
       gameOverPage2();
     }
   }
-  
+
   void gameOverPage1 () {
 
+
+
+    fill (0, 0, 150, 50);
+    stroke(255, 255, 255);
+    strokeWeight(4);
+    rect (320, 250, 320, 200);
+    fill (255);
+    text ("GAME OVER", width/2, height/3 + 40);
+    textAlign(CENTER);
+    textSize(25);
+    text ("Click to play again", width/2, height/2 + 90);
+    float j= random(320, 360);
+    float f= random(240, 282);
+    photo7.resize(90, 90);
+    image(photo7, j, f);
+  }
+
+
+  void gameOverPage2 () {
+
+
+    fill (150, 0, 0, 50);
+    stroke(255, 255, 255);
+    strokeWeight(4);
+    rect (320, 250, 320, 200);
+    fill (255);
+    textAlign(CENTER);
+    text ("GAME OVER", width/2, height/3 + 40);
+
+    textSize(25);
+    textAlign(CENTER);
+    text ("Click to play again", width/2, height/2 + 90);
+    float j= random(320, 360);
+    float f= random(240, 282);
+    photo7.resize(90, 90);
+    image(photo7, j, f);
+  
+  }
+  
+  void resetScore(){
+    if (mousePressed) {
+     
+      ball.vx = floor(random (-5, 5));
+      ball.vy = floor(random (-5, 5));
+      ball.reset();
     
-  float j= random(320,360);
-  float f= random(240,282);
-  photo7.resize(90,90);
-  image(photo7,j,f);
-  fill (0,0,150,50);
-  stroke(255, 255, 255);
-  strokeWeight(4);
-  rect (320, 250, 320, 200);
-  fill (255);
-  text ("GAME OVER", width/2, height/3 + 40);
-  //text (text, width/2, height/3 + 80);
-  text ("Click to play again", width/2, height/3 + 120);}
+    leftPaddle.score = 0;
+    rightPaddle.score = 0;
+  }
 }
-
-void gameOverPage2 () {
-
-  float j= random(320,360);
-  float f= random(240,282);
-  photo7.resize(90,90);
-  image(photo7,j,f);
-  fill (150,0,0,50);
-  stroke(255, 255, 255);
-  strokeWeight(4);
-  rect (320, 250, 320, 200);
-  fill (255);
-  text ("GAME OVER", width/2, height/3 + 40);
-  //text (text, width/2, height/3 + 80);
-  text ("Click to play again", width/2, height/3 + 120);
-
+  
+  
+  
 }
