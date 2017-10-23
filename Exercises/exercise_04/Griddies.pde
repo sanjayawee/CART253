@@ -11,6 +11,8 @@ class Griddie {
   int moveEnergy = -1;
   int collideEnergy = 10;
   
+  int collideSize = 1;
+  
   // Position, size, energy, and fill color
   int x;
   int y;
@@ -110,6 +112,16 @@ class Griddie {
       // Constrain the energy level to be within bounds
       energy = constrain(energy,0,maxEnergy);
     }
+    
+  }
+  
+  
+  void checkingCollision(Eclipies ww,Griddie qq){
+  
+    if(ww.xx==qq.x){
+    size+=collideSize;
+    }
+  
   }
 
   // display()

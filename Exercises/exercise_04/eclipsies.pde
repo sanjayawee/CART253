@@ -2,22 +2,28 @@ class Eclipies{
 
 
 
-  int maxEnergy =250;
+  int maxEnergy =255;
   int moveEnergy = -1;
-  int collideEnergy = 20;
+  int collideEnergy = 10;
   int collideSize = 5;
 
-  int x;
-  int y;
+  int xx;
+  int yy;
   int size;
   int energy;
-  color fill = color(0, 255, 80);
-
-
+  
+  float r=round(random(0,255));
+  float g=round(random(0,255));
+  float b=round(random(0,255));
+  
+  
+  color fill = color(0,255,100);
+  //color fill = color(r,g,b);
+ 
   Eclipies(int tempX, int tempY, int tempSize) {
 
-    x=tempX;
-    y=tempY;
+    xx=tempX;
+    yy=tempY;
     size=tempSize;
     energy = maxEnergy;
   }
@@ -28,20 +34,20 @@ class Eclipies{
       return;
    }
 
-    int xMoveType = floor(random(-1, 3));
-    int yMoveType = floor(random(-1, 3));
-    x+=size*xMoveType;
-    y+=size*yMoveType;
+    int xMoveType = floor(random(-1, 2));
+    int yMoveType = floor(random(-1, 2));
+    xx+=size*xMoveType;
+    yy+=size*yMoveType;
 
-    if (x<0) {
-      x+=width;
-    } else if (x>=width) {
-      x-=width;
+    if (xx<0) {
+      xx+=width;
+    } else if (xx>=width) {
+      xx-=width;
     }
-    if (y<0) {
-      y+=height;
-    } else if (y>=height) {
-      y-=height;
+    if (yy<0) {
+      yy+=height;
+    } else if (yy>=height) {
+      yy-=height;
     }
 
     energy+=moveEnergy;
@@ -55,12 +61,15 @@ class Eclipies{
 
       return;
     }
-    if (x == other.x && y== other.y) {
+    if (xx == other.xx && yy== other.yy) {
 
       energy+=collideEnergy;
       energy = constrain(energy, 0, maxEnergy);
-      size+=collideSize;
+      //size+=collideSize;
+      //color fill = color(r,g,b);
+      
     }
+    
   }
 
 
@@ -69,7 +78,8 @@ class Eclipies{
   void EclDisplay() {
     fill(fill, energy);
     noStroke();
-    ellipse(x, y, size, size);
+    ellipse(xx,yy,size,size);
+    
   }
 
 
