@@ -27,7 +27,7 @@ void setup() {
 
   // QUESTION: What does this for loop do?
   //ANSWER: 
-  //
+  //creating X and Y random locations for all griddies
   //
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
@@ -67,6 +67,7 @@ void draw() {
         // QUESTION: What does this line check?
         // ANSWER: 
         // 
+        //
         griddies[i].collide(griddies[j]);
       }
     }
@@ -83,5 +84,6 @@ void draw() {
 
     eclipies[e].EclUpdate();
     eclipies[e].EclDisplay();
+    eclipies[e].collide(eclipies);
   }
 }
