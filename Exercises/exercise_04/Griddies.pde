@@ -35,7 +35,9 @@ class Griddie {
   void update() {
     
     // QUESTION: What is this if-statement for?
-    //ANSWER: 
+    // ANSWER: 
+    // if energy is 0 do not execute below lines.
+    //
     if (energy == 0) {
       return;
     }
@@ -46,7 +48,7 @@ class Griddie {
     //xMoveType and yMoveType values are random between -1 and +2.
     //if both max and min random numbers are positive griddie moves same way
     //in this case griddies are moving randomly 
-    //x and y cordiantes are equal to the size(gridSize) multiplied by x and y MoveType
+    //x and y coordinats are equal to the size(gridSize) multiplied by x and y MoveType
     // x=20*(-1 || 0 || 1 || 2)     y=20*(-1 || 0 || 1 || 2)
     //
     int xMoveType = floor(random(-1,2));
@@ -59,8 +61,9 @@ class Griddie {
     // ANSWER: 
     //if x less than 0, change the X to x=x+width 
     //it's mean, if rectangle touch the left side of the wall then move it to the right side of the wall
-    //this if and else if statements is preventing the rectangle go of the 
-    
+    //this if and else if statements is preventing the rectangle to go off the screen
+    //all the Griddies stay in side of the screen
+    // 
     if (x < 0) {
       x += width;
     }
@@ -89,14 +92,17 @@ class Griddie {
   
   void collide(Griddie other) {
     // QUESTION: What is this if-statement for?
-    //ANSWER: 
+    // ANSWER: 
+    //if energy or other.energy is 0 skip the line statement below
+    //
+    //
     if (energy == 0 || other.energy == 0) {
       return;
     }
     
     // QUESTION: What does this if-statement check?
     // ANSWER: 
-    //check the griddie overlapping if this statement true increas the energy by adding collideEnergy
+    //checking the griddies overlapping if this statement true increase the energy by adding collideEnergy
     //
     if (x == other.x && y == other.y) {
       // Increase this Griddie's energy

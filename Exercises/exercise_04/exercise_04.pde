@@ -27,22 +27,21 @@ void setup() {
 
   // QUESTION: What does this for loop do?
   //ANSWER: 
-  
+  //
+  //
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
     griddies[i] = new Griddie(x * gridSize, y * gridSize, gridSize);
   }
-  
+
   //CHANGED
   //
- for (int e = 0; e < eclipies.length; e++) {
+  for (int e = 0; e < eclipies.length; e++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
-    griddies[e] = new Griddie(x * gridSize, y * gridSize, gridSize);
+    eclipies[e] = new Eclipies(x * gridSize, y * gridSize, gridSize);
   }
-  
-  
 }
 
 // draw()
@@ -61,25 +60,28 @@ void draw() {
     // Now go through all the griddies a second time...
     for (int j = 0; j < griddies.length; j++) {
       // QUESTION: What is this if-statement for?
+      // ANSWER: 
+      // if j is not equal to the i. Do the following thing
+      //
       if (j != i) {
         // QUESTION: What does this line check?
-         //ANSWER: 
-         
+        // ANSWER: 
+        // 
         griddies[i].collide(griddies[j]);
       }
     }
-    
+
     // Display the griddies
     griddies[i].display();
-    
   }
-  
- for (int e = 0; e < griddies.length; e++){
- 
- eclipies[e].EclUpdate();
- eclipies[e].EclDisplay();
- 
- }
-  
-  
+
+
+  //
+  //CHANGED
+  //
+  for (int e = 0; e < eclipies.length; e++) {
+
+    eclipies[e].EclUpdate();
+    eclipies[e].EclDisplay();
+  }
 }
