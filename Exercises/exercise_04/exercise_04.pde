@@ -83,7 +83,13 @@ void draw() {
   for (int e = 0; e < eclipies.length; e++) {
 
     eclipies[e].EclUpdate();
-    eclipies[e].EclDisplay();
-    eclipies[e].collide(eclipies);
+  
+
+    for (int r = 0; r < eclipies.length; r++) {
+      if(r!=e){
+      eclipies[e].collide(eclipies[r]);
+      }
+    }
+      eclipies[e].EclDisplay();
   }
 }

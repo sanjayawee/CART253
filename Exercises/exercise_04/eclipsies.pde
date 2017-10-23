@@ -2,7 +2,7 @@ class Eclipies{
 
 
 
-  int maxEnergy =100;
+  int maxEnergy =250;
   int moveEnergy = -1;
   int collideEnergy = 20;
   int collideSize = 5;
@@ -24,9 +24,9 @@ class Eclipies{
 
   void EclUpdate() {
 
-  //  if (energy == 0 ) {
-   //   return;
-   // }
+    if (energy == 0 ) {
+      return;
+   }
 
     int xMoveType = floor(random(-1, 3));
     int yMoveType = floor(random(-1, 3));
@@ -49,12 +49,12 @@ class Eclipies{
     energy = constrain(energy, 0, maxEnergy);
   }
 
-  void collide(Griddie other) {
+  void collide(Eclipies other) {
 
-   // if (energy == 0 || other.energy == 0) {
+    if (energy == 0 || other.energy == 0) {
 
-   //   return;
-   // }
+      return;
+    }
     if (x == other.x && y== other.y) {
 
       energy+=collideEnergy;
