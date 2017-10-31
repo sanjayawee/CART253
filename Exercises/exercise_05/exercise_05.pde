@@ -1,34 +1,44 @@
 
+//This is a life system.The polliwogs are move around randomly.
+//when pressing the left mouse key all the polliwogs gather to mouse pointer and move 
+//slowly,then pressing the right mouse button all the polliwogs are move fast and 
+//trying to move away from mouse pointer
 
-Ball[] ball =new Ball[10] ;
+//A array for all the polliwogs
+Polliwog[] Polli =new Polliwog[10];
+//Mother mom;
+//Predator pred;
 
-color defaultcolor= color(255);
+
 PImage photo1;
-
-
+PImage photo2;
+PImage photo3;
 
 void setup() {
-  photo1 = loadImage("pong.png");
-  size(400, 400);
-  surface.setResizable(true); // Put this in setup
-  for (int i=0; i<ball.length; i++) {
+  // Set up the window size and loadImages
+  size(640, 480);
+  photo1 = loadImage("img.png");
+  photo2 = loadImage("imgmother.png");
+  photo3 = loadImage("Predator.png");
+  
+  surface.setResizable(true);//set window resizable
 
-    int x=floor(random(0, width/30));
-    int y=floor(random(0, height/30));
-    ball[i]=new Ball(x*30, y*30, 30);
+//create X and Y random locations for all polliwogs
+//
+  for (int i=0; i<Polli.length; i++) {
+
+    int x=floor(random(0, width/10));
+    int y=floor(random(0, height/10));
+    Polli[i]=new Polliwog(x*10, y*10, 30);
   }
 }
+
 void draw() {
-  background(defaultcolor);
-  for (int j=0; j<ball.length; j++) {
-    ball[j].update();
-    ball[j].display();
-    //ball[j].mouseFallow();
-  }
-}
-void mouseClicked() {
-  surface.setSize(400, 400); // Change size with this
-}
 
-void changeColor() {
+  background(255);
+  //update and display all the polliwogs in array
+  for (int j=0; j<Polli.length; j++) {
+    Polli[j].update();
+    Polli[j].display();
+  }
 }
