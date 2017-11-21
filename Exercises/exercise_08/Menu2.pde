@@ -1,3 +1,8 @@
+// Manu2 Calss
+//
+//In this Menu we can choose different pong versions
+//
+
 class Menu2 {
 
   State select = State.NONE;
@@ -22,6 +27,7 @@ class Menu2 {
 
     mouseHandle();
 
+   //create Buttons for each Pong version
     fill(255);
     rectMode(CENTER);
     //mousehandle();
@@ -59,7 +65,10 @@ class Menu2 {
   void keyReleased() {
   }
 
-  void mouseHandle() {
+
+
+
+   void mouseHandle() {
 
     if (mouseX > width/2-75 && mouseX < width/2+75 && mouseY < height/2-150+20 && mouseY > height/2-150-20) {
       rect(width/2, height/2-150, 155, 45);

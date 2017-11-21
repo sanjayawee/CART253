@@ -17,8 +17,8 @@ class Instruction {
     textAlign(CENTER, CENTER);
     textSize(30);
     fill(255);
-    text("W to up Z to down", width/2, height/2);
-    text("P to up M to down", width/2, height/2+50);
+    text("Left-side player Q and Z", width/2, height/2);
+    text("Right-side player O and M", width/2, height/2+50);
     text("Press ENTER to start the game", width/2, height-50);
   }
 

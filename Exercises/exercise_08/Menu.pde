@@ -19,7 +19,8 @@ class Menu {
      text("SHIP", width/2, 150);
      text("BOUNCE", width/2, 200);*/
 
-    //create Buttons for 
+    //create Buttons for each Category
+    
     fill(255);
     rectMode(CENTER);
     mouseHandle();
@@ -28,7 +29,7 @@ class Menu {
     rect(width/2, height/2+10, 150, 40);
     rect(width/2, height/2+60, 150, 40);
 
-    //Add 
+     
     textSize(15);
     textAlign(CENTER);
     fill(0);
@@ -37,6 +38,9 @@ class Menu {
     text("SPACE", width/2, height/2+15);
     text("BOUNCE", width/2, height/2+65);
   }
+  //
+  //
+  //
 
   void keyPressed() {
     if (key == 'p' || key == 'P') {

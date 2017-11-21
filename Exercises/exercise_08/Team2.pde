@@ -1,8 +1,16 @@
+// Team02 Class
+//
+//
+
 class Team2 {
 
   int x;
   int y;
   int size;
+  
+  // Set up the players with the location and size
+  //add arguments to the constructor
+  //
 
   Team2(int tempX, int tempY, int tempSize) {
     x = tempX;
@@ -10,11 +18,18 @@ class Team2 {
     size = tempSize;
   }
 
+    // update()
+    // 
+    // Add random movement for the players
+    
   void update() {
-    int xMoveType = floor(random(-1, 2));
-    int yMoveType = floor(random(-1, 2));
-    x += 5 * xMoveType;
-    y += 5 * yMoveType;
+    int xRun = floor(random(-1, 2));
+    int yRun = floor(random(-1, 2));
+    x += 5 * xRun;
+    y += 5 * yRun;
+
+// keep all the team 2 players in right-side of the screen
+//
 
     if (x > width/2-50) {
       x = 0;
@@ -27,6 +42,10 @@ class Team2 {
       y -= height;
     }
   }
+
+ //display()
+  //
+  //Draw the Team 02 players
 
   void display() {
 

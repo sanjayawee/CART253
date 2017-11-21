@@ -1,21 +1,28 @@
+//Team01 Class
+//
+//
+
 class Team1 {
 
   int x;
   int y;
   int size;
 
+
+// Set up the players with the location and size
+//add arguments to the constructor
+//
   Team1(int tempX, int tempY, int tempSize) {
     x = tempX;
     y = tempY;
     size = tempSize;
   }
 
-// update()
-//
-//
+    // update()
+    // 
+    // Add random movement for the players
 
-  void update() {
-//    
+  void update() {  
     int xRun = floor(random(-1, 2));
     int yRun = floor(random(-1, 2));
     x += 5 * xRun;
