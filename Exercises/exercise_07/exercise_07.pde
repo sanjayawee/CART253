@@ -14,6 +14,7 @@ AudioPlayer player1;
 AudioPlayer player2;
 
 FFT fft;
+FFT fft2;
 int bandsPerOctave = 2;
 
 boolean play;
@@ -31,11 +32,11 @@ void setup() {
 
 
   fft = new FFT(player1.bufferSize(), player1.sampleRate());
-  fft = new FFT(player2.bufferSize(), player2.sampleRate());
+  fft2 = new FFT(player2.bufferSize(), player2.sampleRate());
   // calculate averages based on a miminum octave width of 22 Hz
   // split each octave into a number of bands
   fft.logAverages(22, bandsPerOctave);
-
+fft2.logAverages(22, bandsPerOctave);
 
   im1=loadImage("play.png");
   im2=loadImage("puser.png");
@@ -58,7 +59,7 @@ void draw() {
 
   // perform a forward FFT on the samples in song's mix buffer
   fft.forward(player1.mix);
-  fft.forward(player2.mix);
+  fft2.forward(player2.mix);
 
   for (int i = 0; i < fft.avgSize(); i++)
   {
