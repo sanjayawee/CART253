@@ -1,5 +1,7 @@
 class Ball {
 
+  PImage soccerBall;
+  
   int SPEED = 5;
   int SIZE = 16;
 
@@ -16,6 +18,8 @@ class Ball {
     y=tempY;
     vy=SPEED;
     vx=SPEED;
+    
+    soccerBall= loadImage("soccerBall.png");
   }
 
 
@@ -70,8 +74,14 @@ class Ball {
     noStroke();
     fill(ballColor);
     ellipseMode(CENTER);
-
+    
     // Draw the ball
     ellipse(x, y, SIZE, SIZE);
+    
+    if(pongmenu.soccerBall){
+    imageMode(CENTER);
+    image(soccerBall,x,y);
+    }
+    
   }
 }

@@ -2,6 +2,8 @@ class Menu2{
 
 State select = State.NONE;
 
+boolean soccerBall=false;
+
 Menu2(){
 
 }
@@ -51,12 +53,14 @@ void display(){
 
  void keyPressed() {
     if (key == '1' || key == '1') {
-      select = State.INSTRUCTION;
-      //select = State.BASIC_PONG;
+      //select = State.INSTRUCTION;
+      select = State.BASIC_PONG;
+      soccerBall=false;
     } 
       if (key == '2' || key == '2') {
-      select = State.INSTRUCTION;
-      //select = State.BASIC_PONG;
+      //select = State.INSTRUCTION;
+      select = State.SOCCER_PONG;
+      soccerBall=true;
     }
     
   }

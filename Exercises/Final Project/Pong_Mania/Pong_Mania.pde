@@ -69,19 +69,19 @@ void draw() {
     }
     break;
 
-  case INSTRUCTION:
+ /* case INSTRUCTION:
     instruction.update();
     if (instruction.finished) {
       state = State.SOCCER_PONG;
       //state = State.BASIC_PONG;
     }
-    break;
+    break;*/
     
 
   case BASIC_PONG:
     basicPong.update();
     if (basicPong.returnToMenu) {
-      state = State.MENU;
+      state = State.MENU2;
       basicPong.reset();
     }
     break;
@@ -89,7 +89,7 @@ void draw() {
   case SOCCER_PONG:
     soccerPong.update();
     if (soccerPong.returnToMenu) {
-      state = State.MENU;
+      state = State.MENU2;
       soccerPong.reset();
     }
     break;
