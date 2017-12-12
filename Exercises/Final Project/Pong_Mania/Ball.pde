@@ -59,6 +59,12 @@ class Ball {
     }
   }
 
+
+
+
+
+
+
   void display() {
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
     noStroke();

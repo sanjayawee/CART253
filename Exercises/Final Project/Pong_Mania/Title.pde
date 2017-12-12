@@ -16,10 +16,11 @@ class Title {
     textAlign(CENTER, CENTER);
     textSize(30);
     fill(255);
-    text("WELCOME TO GAME MANIA", width/2, height/2);
-
+    text("WELCOME TO PONG MANIA", width/2, height/2);
+    
     textSize(random(30, 31));
     text("Press Enter", width/2, 3*height/4);
+    
   }
 
   void keyPressed() {
@@ -32,4 +33,12 @@ class Title {
 
   void keyReleased() {
   }
+  
+  void mouseClicked(){
+
+  if(mouseX<width/2 && mouseY < height/2){
+       finished = true;
+  }
+  
+}
 }
