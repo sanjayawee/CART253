@@ -11,12 +11,12 @@ Menu menu;
 BasicPong basicPong;
 Menu2 pongmenu;
 SoccerPong soccerPong;
-
+SpacePong spacePong;
 //WesternPong westernPong;
-//FuturePong futurePong;
-//SpacePong spacePong;
+FuturePong futurePong;
+
 //CrazyPong crazyPong;
-//RealPong crazyPong;
+RealPong realPong;
 
 void setup() {
   size(640, 480);
@@ -25,7 +25,10 @@ void setup() {
   menu = new Menu();
   pongmenu = new Menu2();
   basicPong = new BasicPong();
-  soccerPong= new SoccerPong();
+  soccerPong = new SoccerPong();
+  spacePong = new SpacePong();
+  futurePong = new FuturePong();
+  realPong = new RealPong();
 
   state = State.TITLE;
 }
@@ -43,13 +46,6 @@ void draw() {
       state = State.MENU;
     }
     break;
-
-    /*case MENU:
-     menu.update();
-     if (menu.selection != State.NONE) {
-     state = menu.selection;
-     menu.selection = State.NONE;
-     }*/
 
   case MENU:
     menu.update();
@@ -82,6 +78,22 @@ void draw() {
       soccerPong.reset();
     }
     break;
+
+  case SPACE_PONG:
+    spacePong.update();
+    if (spacePong.returnToMenu) {
+      state = State.MENU2;
+      spacePong.reset();
+    }
+    break;
+
+  case FUTURE_PONG:
+    futurePong.update();
+    if (futurePong.returnToMenu) {
+      state = State.MENU2;
+      futurePong.reset();
+    }
+    break;
   }
 }
 
@@ -108,6 +120,14 @@ void keyPressed() {
 
   case SOCCER_PONG:
     soccerPong.keyPressed();
+    break;
+
+  case SPACE_PONG:
+    spacePong.keyPressed();
+    break;
+
+  case FUTURE_PONG:
+    futurePong.keyPressed();
     break;
   }
 }
@@ -137,6 +157,14 @@ void keyReleased() {
   case SOCCER_PONG:
     soccerPong.keyReleased();
     break;
+
+  case SPACE_PONG:
+    spacePong.keyReleased();
+    break;
+
+  case FUTURE_PONG:
+    futurePong.keyReleased();
+    break;
   }
 }
 
@@ -145,5 +173,20 @@ void mouseClicked() {
   case MENU:
     menu.mouseClicked();
     break;
+
+  case MENU2:
+    pongmenu.mouseClicked();
+    break;
+    
+
   }
+}
+
+
+void mouseReleased() {
+   switch (state){
+  case FUTURE_PONG:
+  futurePong.mouseReleased();
+  break;
+}
 }
