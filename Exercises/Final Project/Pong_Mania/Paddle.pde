@@ -14,12 +14,15 @@ class Paddle {
 
   // The position and velocity of the paddle (note that vx isn't really used right now)
   int x;
-  int y;
+  float y;
   int vx;
   int vy;
-  
+
   // The fill color of the paddle
   color paddleColor = color(255);
+
+  //checking the future pong gmae
+  boolean futurepong=false;
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -33,7 +36,7 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  Paddle(int _x, int _y, char _upKey, char _downKey) {
+  Paddle(int _x, float _y, char _upKey, char _downKey) {
     x = _x;
     y = _y;
     vx = 0;
@@ -56,33 +59,33 @@ class Paddle {
     y += vy;
 
     // Constrain the paddle's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
+    y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
   }
 
   // display()
   //
   // Display the paddle at its location
-  
+
   void display() {
     // Set display properties
     noStroke();
     fill(paddleColor);
     rectMode(CENTER);
-    
+
     // Draw the paddle as a rectangle
     rect(x, y, WIDTH, HEIGHT);
   }
-  
+
   void reset() {
-   vx = 0;
-   vy = 0;
-   y = height/2;
+    vx = 0;
+    vy = 0;
+    y = height/2;
   }
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
-  
+
   void keyPressed() {
     // Check if the key is our up key
     if (key == upKey) {
@@ -108,6 +111,27 @@ class Paddle {
     else if (key == downKey && vy > 0) {
       // If so it should stop
       vy = 0;
+    }
+    
+  }
+  
+   void mouseReleased() {
+    if (mouseX > width/2-100 && mouseX < width/2+100 && mouseY < height/2+50 && mouseY > height/2-50) {
+
+      futurepong=true;
+    }
+  }
+  
+
+  void autoPaddle(Ball ball) {
+    if (futurepong==true) {
+      y=ball.y;
+    }
+  }
+
+  void mouseControl() {
+    if (futurepong==true) {
+      y=mouseY;    // x=mouseX;
     }
   }
 }
