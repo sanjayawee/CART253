@@ -14,6 +14,7 @@ class BasicPong {
   Paddle leftPaddle;
   Paddle rightPaddle;
   Ball ball;
+  Score score;
 
   // The distance from the edge of the window a paddle should be
   int PADDLE_INSET = 8;
@@ -28,13 +29,15 @@ class BasicPong {
   //
   // Creates the paddles and ball
 
-   BasicPong() {
-     // Create a paddle on either side of the screen
+  BasicPong() {
+    // Create a paddle on either side of the screen
     leftPaddle = new Paddle(PADDLE_INSET, height/2, 'q', 'z');
     rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'o', 'm');
 
     // Create the ball at the centre of the screen
     ball = new Ball(width/2, height/2);
+
+    score = new Score();
   }
 
   // update()
@@ -43,7 +46,7 @@ class BasicPong {
   // if the ball has hit a paddle, and displaying everything.
 
   void update() {
-    
+
     // Fill the background each frame so we have animation
     background(backgroundColor);
 
@@ -51,6 +54,7 @@ class BasicPong {
     leftPaddle.update();
     rightPaddle.update();
     ball.update();
+    score.update(ball);
 
     // Check if the ball has collided with either paddle
     ball.collide(leftPaddle);
@@ -66,13 +70,22 @@ class BasicPong {
     leftPaddle.display();
     rightPaddle.display();
     ball.display();
+    score.display();
+
+    if (score.gameOver) {
+      ball.reset();
+      //ball.resetScore();
+      leftPaddle.reset();
+      rightPaddle.reset();
+      score.overDisplay();
+    }
   }
-  
+
   // reset()
   //
   // Resets the game by resetting the ball and paddles and setting
   // returnToMenu to false
-  
+
   void reset() {
     ball.reset();
     leftPaddle.reset();
@@ -90,10 +103,18 @@ class BasicPong {
     // Just call both paddles' own keyPressed methods
     leftPaddle.keyPressed();
     rightPaddle.keyPressed();
-    
+
     // Check if we should return to the menu
     if (key == 'B' || key == 'b') {
-     returnToMenu = true; 
+      returnToMenu = true;
+    }
+
+    if (key == 'G' || key == 'g' && score.player1==2 || score.player2==2) {
+      score.gameOver = false;
+      ball.reset();
+      ball.resetScore();
+      leftPaddle.reset();
+      rightPaddle.reset();
     }
   }
 

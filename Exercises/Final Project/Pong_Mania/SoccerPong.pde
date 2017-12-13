@@ -4,6 +4,7 @@ class SoccerPong {
   Ball ball;
   Paddle leftPaddle;
   Paddle rightPaddle;
+  Score score;
 
 
   int PADDLE_INSET = 8;
@@ -33,14 +34,17 @@ class SoccerPong {
       players[i] = new Players(x * playerSize, y * playerSize, playerSize);
     }
     
+    score = new Score();
+    
   }
 
   void update() {
     
-    display();
+    
     leftPaddle.update();
     rightPaddle.update();
     ball.update();
+    score.update(ball);
 
     // frameRate(20);
 
@@ -53,16 +57,25 @@ class SoccerPong {
       ball.reset();
     }
 
-
+    display();
     leftPaddle.display();
     rightPaddle.display();
     ball.display();
+    score.display();
 
     for (int i=0; i< players.length; i++) {
       players[i].update();
       players[i].display();
       ballHit(players [i]);
       ballHit2(players [i]);
+    }
+    
+    if (score.gameOver) {
+      ball.reset();
+      //ball.resetScore();
+      leftPaddle.reset();
+      rightPaddle.reset();
+      score.overDisplay();
     }
     
   }
@@ -95,12 +108,12 @@ class SoccerPong {
   
   void ballHit(Players players) { 
 
-    boolean insideLeft2 = (ball.x + ball.SIZE/2 > players.xx - players.size/2);
+    //boolean insideLeft2 = (ball.x + ball.SIZE/2 > players.xx - players.size/2);
     boolean insideRight2 = (ball.x -ball.SIZE/2 < players.xx + players.size/2);
     boolean insideTop2 = (ball.y + ball.SIZE/2 > players.yy - players.size/2);
     boolean insideBottom2 = (ball.y - ball.SIZE/2 < players.yy + players.size/2);
 
-    if (insideRight2  &&  insideLeft2 && insideTop2 && insideBottom2) {
+    if (insideRight2   && insideTop2 && insideBottom2) {
        if (ball.vx < 0) {
         // Reset its position to align with the left side of the paddle
         ball.x = players.xx + players.size/2 + ball.SIZE/2;
@@ -133,6 +146,14 @@ class SoccerPong {
 
     if (key == 'b' || key == 'B') {
       returnToMenu = true;
+    }
+    
+    if (key == 'G' || key == 'g' && score.player1==2 || score.player2==2) {
+      score.gameOver = false;
+      ball.reset();
+      ball.resetScore();
+      leftPaddle.reset();
+      rightPaddle.reset();
     }
   }
 

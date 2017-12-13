@@ -15,19 +15,12 @@ display();
 void display(){
 
     background(0);
-    /*fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    text("PONG1", width/2, 50);
-    text("PONG2", width/2, 100);
-    text("PONG3", width/2, 150);
-    text("PONG4", width/2, 200);*/
     
     mouseHandle();
     
     fill(255);
     rectMode(CENTER);
-    //mousehandle();
+
     rect(width/2, height/2-150, 150, 40);
     rect(width/2, height/2-100, 150, 40);
     rect(width/2, height/2-50, 150, 40);

@@ -12,12 +12,7 @@ class Menu {
   void display() {
 
     background(0);
-    /*textAlign(CENTER, CENTER);
-     textSize(32);
-     text("PONG", width/2, 50);
-     text("SNAKE", width/2, 100);
-     text("SHIP", width/2, 150);
-     text("BOUNCE", width/2, 200);*/
+
 
 //create Buttons for 
     fill(255);

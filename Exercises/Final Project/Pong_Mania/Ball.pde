@@ -1,9 +1,12 @@
 class Ball {
 
   PImage soccerBall;
-  
+
   int SPEED = 5;
   int SIZE = 16;
+
+  int count1;
+  int count2;
 
   int x;
   int y;
@@ -18,7 +21,7 @@ class Ball {
     y=tempY;
     vy=SPEED;
     vx=SPEED;
-    
+
     soccerBall= loadImage("soccerBall.png");
   }
 
@@ -35,6 +38,11 @@ class Ball {
   void reset() {
     x = width/2;
     y = height/2;
+  }
+
+  void resetScore() {
+    count1=0;
+    count2=0;
   }
 
   boolean isOffScreen() {
@@ -54,9 +62,11 @@ class Ball {
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
         x = paddle.x + paddle.WIDTH/2 + SIZE/2;
+        count1++;
       } else if (vx > 0) {
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
+        count2++;
       }
       // And make it bounce
       vx = -vx;
@@ -74,14 +84,13 @@ class Ball {
     noStroke();
     fill(ballColor);
     ellipseMode(CENTER);
-    
+
     // Draw the ball
     ellipse(x, y, SIZE, SIZE);
-    
-    if(pongmenu.soccerBall){
-    imageMode(CENTER);
-    image(soccerBall,x,y);
+
+    if (pongmenu.soccerBall) {
+      imageMode(CENTER);
+      image(soccerBall, x, y);
     }
-    
   }
 }
