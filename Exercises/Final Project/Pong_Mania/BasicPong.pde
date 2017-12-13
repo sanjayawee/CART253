@@ -35,7 +35,7 @@ class BasicPong {
     rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'o', 'm');
 
     // Create the ball at the centre of the screen
-    ball = new Ball(width/2, height/2);
+    ball = new Ball(width/2, height/2, color(255), 5);
 
     score = new Score();
   }
@@ -126,5 +126,8 @@ class BasicPong {
     // Call both paddles' keyReleased methods
     leftPaddle.keyReleased();
     rightPaddle.keyReleased();
+  }
+  
+  void mouseClicked(){
   }
 }

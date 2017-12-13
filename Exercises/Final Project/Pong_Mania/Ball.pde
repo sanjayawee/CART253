@@ -8,19 +8,23 @@ class Ball {
   int count1;
   int count2;
 
-  int x;
-  int y;
+  float x;
+  float y;
 
   int vx;
   int vy;
+  
+  
 
-  color ballColor = color(255);
+  color ballColor;
 
-  Ball(int tempX, int tempY) {
+  Ball(int tempX, float tempY, color tempColor, int tempSpeed) {
     x=tempX;
     y=tempY;
+    SPEED=tempSpeed;
     vy=SPEED;
     vx=SPEED;
+    ballColor=tempColor;
 
     soccerBall= loadImage("soccerBall.png");
   }
