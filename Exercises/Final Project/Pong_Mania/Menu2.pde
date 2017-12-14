@@ -81,6 +81,7 @@ class Menu2 {
     if (mouseX > width/2-75 && mouseX < width/2+75 && mouseY < height/2-100+20 && mouseY > height/2-100-20) {
       select = State.SOCCER_PONG;
       soccerBall=true;
+      stereoSound.play();
     }
     
     if (mouseX > width/2-75 && mouseX < width/2+75 && mouseY < height/2-50+20 && mouseY > height/2-50-20) {

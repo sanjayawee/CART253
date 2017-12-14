@@ -80,10 +80,12 @@ class Ball {
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
         x = paddle.x + paddle.WIDTH/2 + SIZE/2;
+        file1.play(); // play sound
         count1++;
       } else if (vx > 0) {
         // Reset its position to align with the left side of the paddle
         x = paddle.x - paddle.WIDTH/2 - SIZE/2;
+        file1.play(); //play sound
         count2++;
       }
       // And make it bounce

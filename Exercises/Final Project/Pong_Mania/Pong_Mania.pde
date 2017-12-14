@@ -1,4 +1,5 @@
-
+import ddf.minim.*;
+import processing.sound.*;
 
 enum State {
 
@@ -7,6 +8,11 @@ enum State {
 }
 
 State state;
+
+SoundFile file1;
+Minim minim; 
+AudioPlayer stereoSound;
+
 
 Title title;
 Menu menu;
@@ -23,6 +29,11 @@ FuturePong futurePong;
 
 void setup() {
   size(640, 480);
+
+  minim = new Minim(this);
+  stereoSound = minim.loadFile("Soccer.mp3");
+
+  file1 = new SoundFile(this, "Hit.mp3");
 
   title = new Title();
   menu = new Menu();
@@ -120,7 +131,7 @@ void keyPressed() {
     title.keyPressed();
     break;
 
-  
+
 
   case MENU2:
     pongmenu.keyPressed();
@@ -141,8 +152,8 @@ void keyPressed() {
   case FUTURE_PONG:
     futurePong.keyPressed();
     break;
-    
-    case WESTERN_PONG:
+
+  case WESTERN_PONG:
     westernPong.keyPressed();
     break;
   }
@@ -181,8 +192,8 @@ void keyReleased() {
   case FUTURE_PONG:
     futurePong.keyReleased();
     break;
-    
-    case WESTERN_PONG:
+
+  case WESTERN_PONG:
     westernPong.keyReleased();
     break;
   }
