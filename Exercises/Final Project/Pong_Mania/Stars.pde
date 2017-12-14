@@ -4,6 +4,8 @@ class Star {
   float y;
   float z;
 
+ /////////////// Constructor ///////////////
+ 
   Star() {
 
     x=random(-width, width);

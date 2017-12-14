@@ -1,3 +1,5 @@
+
+
 class SpacePong {
 
   Paddle leftPaddle;
@@ -71,7 +73,7 @@ class SpacePong {
 
 
     for (Ball c : ball2) {
-     score.display();
+      score.display();
       c.display();
       c. update();
       c.collide(leftPaddle);

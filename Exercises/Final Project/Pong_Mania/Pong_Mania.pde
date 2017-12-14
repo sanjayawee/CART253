@@ -1,3 +1,5 @@
+
+
 enum State {
 
   NONE, 
@@ -12,11 +14,12 @@ BasicPong basicPong;
 Menu2 pongmenu;
 SoccerPong soccerPong;
 SpacePong spacePong;
-//WesternPong westernPong;
+WesternPong westernPong;
 FuturePong futurePong;
 
 //CrazyPong crazyPong;
-RealPong realPong;
+//RealPong realPong;
+//Capture video;
 
 void setup() {
   size(640, 480);
@@ -28,7 +31,10 @@ void setup() {
   soccerPong = new SoccerPong();
   spacePong = new SpacePong();
   futurePong = new FuturePong();
-  realPong = new RealPong();
+  westernPong = new WesternPong();
+  // realPong = new RealPong();
+
+
 
   state = State.TITLE;
 }
@@ -94,6 +100,14 @@ void draw() {
       futurePong.reset();
     }
     break;
+
+  case WESTERN_PONG:
+    westernPong.update();
+    if (westernPong.returnToMenu) {
+      state = State.MENU2;
+      westernPong.reset();
+    }
+    break;
   }
 }
 
@@ -106,9 +120,7 @@ void keyPressed() {
     title.keyPressed();
     break;
 
-  case MENU:
-    menu.keyPressed();
-    break;
+  
 
   case MENU2:
     pongmenu.keyPressed();
@@ -128,6 +140,10 @@ void keyPressed() {
 
   case FUTURE_PONG:
     futurePong.keyPressed();
+    break;
+    
+    case WESTERN_PONG:
+    westernPong.keyPressed();
     break;
   }
 }
@@ -165,6 +181,10 @@ void keyReleased() {
   case FUTURE_PONG:
     futurePong.keyReleased();
     break;
+    
+    case WESTERN_PONG:
+    westernPong.keyReleased();
+    break;
   }
 }
 
@@ -177,16 +197,30 @@ void mouseClicked() {
   case MENU2:
     pongmenu.mouseClicked();
     break;
-    
 
+  case BASIC_PONG:
+    basicPong.mouseClicked();
+    break;
+
+  case SOCCER_PONG:
+    soccerPong.mouseClicked();
+    break;
+
+  case FUTURE_PONG:
+    futurePong.mouseClicked();
+    break;
+
+  case WESTERN_PONG:
+    westernPong.mouseClicked();
+    break;
   }
 }
 
 
 void mouseReleased() {
-   switch (state){
+  switch (state) {
   case FUTURE_PONG:
-  futurePong.mouseReleased();
-  break;
-}
+    futurePong.mouseReleased();
+    break;
+  }
 }

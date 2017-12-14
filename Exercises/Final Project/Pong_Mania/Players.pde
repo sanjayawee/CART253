@@ -1,13 +1,26 @@
+//Players
+//
+//This player class use in Soccer pong version
+//
+
 class Players {
 
   PImage redTeam, blueTeam;
-
+  
+  // The position of the Red Players
   int x;
   int y;
-  int size;
-
+ 
+  // The position of the Blue Players
   int xx;
   int yy;
+
+  int size;
+
+   /////////////// Constructor ///////////////
+   //
+   //Set the players X and y  positions and size based on arguments
+   //Load the images
 
   Players(int tempX, int tempY, int tempSize) {
     x = tempX;
@@ -19,29 +32,43 @@ class Players {
     redTeam= loadImage("redplayers.png");
     blueTeam= loadImage("blueplayers.png");
   }
+  
+   // update()
+   //
+   // Updates position based on velocity 
 
   void update() {
+  
+  // create a random value veriable   
     int xMoveType = floor(random(-1, 2));
     int yMoveType = floor(random(-1, 2));
+  // Update red and blue players position with random MoveType between -1 and 2  (to move the players) 
     x += 5 * xMoveType;
     y += 5 * yMoveType;
 
     xx += 5 * xMoveType;
     yy += 5 * yMoveType;
     
-    
+  //calling team1 and team2 functions  
     team1();
     team2();
     
   }
-
+  // display()
+  //
+  // Display the Players at their location
+  
   void display() {
 
     imageMode(CENTER);
     image(redTeam, x, y);
     image(blueTeam, xx, yy);
   }
-
+  
+  //team1()
+  // preventing team 1 players (RED) going off the screen 
+  // and Left side 
+  
   void team1() {
     if (x < width/2+50) {
       x += width;
@@ -55,6 +82,10 @@ class Players {
     }
   }
 
+  //team2()
+  // preventing team 1 players (Blue) going off the screen 
+  // and Right side 
+  
   void team2() {
     if (xx > width/2-50) {
       xx = 0;

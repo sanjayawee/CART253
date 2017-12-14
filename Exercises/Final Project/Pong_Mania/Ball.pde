@@ -1,22 +1,36 @@
+// Ball
+//
+// A class that defines a ball that can move around in the window, bouncing
+// of the top and bottom, and can detect collision with a paddle and bounce off that.
+
+
 class Ball {
 
-  PImage soccerBall;
+  /////////////// Properties ///////////////
 
+ 
+  
+  PImage soccerBall;
+ // Default values for speed and size
   int SPEED = 5;
   int SIZE = 16;
-
+ // veriable for count the score
   int count1;
   int count2;
 
+  // The location of the ball
   float x;
   float y;
-
+   // The velocity of the ball
   int vx;
   int vy;
   
   
-
+  // The colour of the ball
   color ballColor;
+  
+  /////////////// Constructor ///////////////
+   
 
   Ball(int tempX, float tempY, color tempColor, int tempSpeed) {
     x=tempX;
@@ -77,7 +91,25 @@ class Ball {
     }
   }
 
+  void bulletHit(Bullet bullet) {
+      
+    boolean insideLeft = (x + SIZE/2 > bullet.x - bullet.size/2);
+    boolean insideRight = (x - SIZE/2 < bullet.x + bullet.size/2);
+    boolean insideTop = (y + SIZE/2 > bullet.y - bullet.size/2);
+    boolean insideBottom = (y - SIZE/2 < bullet.y + bullet.size/2);
+    
 
+    if (insideLeft && insideRight && insideTop && insideBottom) {
+     if (vx > 0) {
+        // Reset its position to align with the left side of the paddle
+        x = bullet.x - bullet.size/2 - SIZE/2;
+        
+        vx = -vx;   
+       
+      }
+      // And make it bounce   
+    }
+  }
 
 
 
@@ -91,7 +123,8 @@ class Ball {
 
     // Draw the ball
     ellipse(x, y, SIZE, SIZE);
-
+    
+    //if player select soccer pong, change the ball to
     if (pongmenu.soccerBall) {
       imageMode(CENTER);
       image(soccerBall, x, y);

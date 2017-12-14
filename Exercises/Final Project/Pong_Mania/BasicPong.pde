@@ -4,10 +4,6 @@
 // We now use the constructor BasicPong() to set up the game, instead of
 // setup(), and we use update() to update the game, instead of draw().
 //
-// A new addition is tracking whether the player presses a key ('m') to
-// return to the menu. If so, the game remembers they did and the main
-// program handles actually changing back to the menu itself.
-
 class BasicPong {
 
   // Variables to store the main objects in the game (the paddles and ball)
@@ -66,19 +62,20 @@ class BasicPong {
       ball.reset();
     }
 
-    // Display the paddles and the ball
+    // Display the paddles,score and the ball
     leftPaddle.display();
     rightPaddle.display();
     ball.display();
     score.display();
 
+    //if gameOver is true, show the result and rest the ball and paddle
     if (score.gameOver) {
       ball.reset();
-      //ball.resetScore();
       leftPaddle.reset();
       rightPaddle.reset();
       score.overDisplay();
     }
+    
   }
 
   // reset()
@@ -103,19 +100,6 @@ class BasicPong {
     // Just call both paddles' own keyPressed methods
     leftPaddle.keyPressed();
     rightPaddle.keyPressed();
-
-    // Check if we should return to the menu
-    if (key == 'B' || key == 'b') {
-      returnToMenu = true;
-    }
-
-    if (key == 'G' || key == 'g' && score.player1==2 || score.player2==2) {
-      score.gameOver = false;
-      ball.reset();
-      ball.resetScore();
-      leftPaddle.reset();
-      rightPaddle.reset();
-    }
   }
 
   // keyReleased()
@@ -123,11 +107,29 @@ class BasicPong {
   // As for keyPressed, except for released!
 
   void keyReleased() {
-    // Call both paddles' keyReleased methods
+  // Call both paddles' keyReleased methods
     leftPaddle.keyReleased();
     rightPaddle.keyReleased();
   }
-  
-  void mouseClicked(){
+
+  // mouseClicked()
+  //
+  //Clicking this areas...
+  void mouseClicked() {
+    
+    if (mouseX > width/2-100-70 && mouseX < width/2-100+70 && mouseY < height/2+65+20 && mouseY > height/2+65-20) {
+  //reset the ball,score,paddles      
+      score.gameOver = false;
+      ball.reset();
+      ball.resetScore();
+      leftPaddle.reset();
+      rightPaddle.reset();
+    }
+    
+//return to pong menu 
+    if (mouseX > width/2+100-70 && mouseX < width/2+100+70 && mouseY < height/2+65+20 && mouseY > height/2+65-20)
+    {
+      returnToMenu = true;
+    }
   }
 }
